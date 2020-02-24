@@ -1,0 +1,11 @@
+Common_name,Scientific_name,Comment,FracPreyInDiet_S,FracBioInDiet_S
+Bank_vole,Clethrionomys_glareolus,NA,4.5,3.6
+Water_vole,Arvicola_terrestris,NA,0.6,2.5
+Root_vole,Microtus_oeconomus,NA,15.4,18.9
+Short-tailed_vole,Microtus_agrestis,NA,0.6,0.7
+Common_vole,Microtus_arvalis,NA,54.5,49.0
+Undet._vole,Microtus_sp.,NA,13.4,13.4
+House_mouse,Mus_musculus,NA,4.5,3.6
+Yellow-necked_mouse,Apodemus_flavicollis,NA,2.6,3.8
+Undet._mouse,Apodemus_sp.,NA,2.6,3.3
+Undet._passerine_bird,NA,Undet._birds,1.3,1.2

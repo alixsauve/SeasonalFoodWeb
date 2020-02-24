@@ -1,0 +1,12 @@
+Common_name,Scientific_name,Comment,FracPreyInDiet_S,FracBioInDiet_S
+Mole,Talpa_europaea,NA,1.4,3.9
+Undet._shrew,Sorex_sp.,NA,8.7,3.1
+Undet._insectivore,NA,NA,2.9,1.1
+Bank_vole,Clethrionomys_glareolus,NA,29.0,21.9
+Undet._vole,Microtus_sp.,NA,5.8,5.9
+Yellow-necked_mouse,Apodemus_flavicollis,NA,42.0,57.9
+Undet._rodent,NA,NA,2.9,2.5
+Nuthatch,Sitta_europaea,NA,1.5,1.5
+Bird_egg,NA,Undet._birds,1.5,0.1
+Undet._amphibian,Anura_sp.,Undet._amphibians,2.9,2.1
+Carabidae_beetle,NA,Coleoptera,1.4,+
