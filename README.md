@@ -10,6 +10,6 @@ It is structured with three folders:
 
 * `Parameterisation` which gathers all R scripts (in `Parameterisation/Scripts`) to estimates model parameters.
 
-* `Simulations` gathers MATLAB scripts to simulate the dynamics of our parameterised food web model of the Bialowieza forest.
+* `Simulations` gathers MATLAB scripts to simulate the dynamics of our parameterised food web model of the Bia&#322;owie&#380;a forest.
 
 * `Figures` contains R scripts to draw the figures displayed in the manuscript.
