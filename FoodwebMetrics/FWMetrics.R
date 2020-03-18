@@ -1,9 +1,7 @@
-# This scripts draws a four panel figure with
-# A) diverse community and trophic level scale metrics
-# (C, Cw, L/Sp, No Sp/TL, No L/Sp/TL, H/TL, No Shared Partners/TL, Niche overlap / TL)
-# B) The season generalism (estimated with a shannon index, see Humphries et al. 2017)
-# C) The effective number of partners (assuming all equally present) / Sp
-# D) The proportional generality (given the available resources)
+# This scripts draws a three-panel figure with
+# A) Predation seasonality
+# B) Trophic similarity between seasons
+# C) A comparison of proportional generality between seasons
 
 rm(list=ls(all=TRUE))
 
@@ -12,17 +10,12 @@ library(bipartite)
 
 E <- 0.1
 
-PC_PATH <- "/media/asauve/DATAPART1/seasonality/"
-# PC_PATH <- "/home/alix/Documents/recherche/seasonality/"
-
 # define working directories
-WK_DIR <- paste(PC_PATH, "SeasonalFW/Parametrisation/JAE_Submission/R1", sep = "")
-DAT1_DIR <- paste(PC_PATH, "SeasonalFW/Parametrisation/BPF_Data", sep = "")
-DAT2_DIR <- paste(PC_PATH, "SeasonalFW/Parametrisation/BiomassDensityBasedParameters/", sep = "")
-FXN_DIR <- paste(PC_PATH, "SeasonalFW/Parametrisation/Scripts", sep = "")
+DAT1_DIR <- "../Data/BPF_Data"
+DAT2_DIR <- "../ProcessedData"
+FIG_DIR <- "../../Figures/FigureOutputs"
 
 # load functions
-setwd(FXN_DIR)
 source("shannonSeason.R")
 source("edgelist2Mat.R")
 source("dietBrayCurtis.R")
@@ -30,11 +23,11 @@ source("jaccardDistDiet.R")
 
 # load data
 setwd(DAT1_DIR)
-SpDensSeason <- read.csv("SpDensitySeasons_20190910.csv", header = TRUE, stringsAsFactors = FALSE)
 PredDensPB <- read.csv("PredPostBreedingBiomass.csv", header = TRUE, stringsAsFactors = FALSE)
 setwd(DAT2_DIR)
-SpQuantities <- read.csv("SpDensBiomass_20190910.csv", header = TRUE, stringsAsFactors = FALSE)
-IntakePrey <- read.csv("PerCapitaIntakePreyBiomass_20190910.csv", header = TRUE, stringsAsFactors = FALSE)
+IntakePrey <- read.csv("PerCapitaIntakePreyBiomass.csv", header = TRUE, stringsAsFactors = FALSE)
+SpDensSeason <- read.csv("SpDensitySeasonsFinal.csv", header = TRUE, stringsAsFactors = FALSE)
+SpQuantities <- read.csv("SpDensBiomass.csv", header = TRUE, stringsAsFactors = FALSE)
 
 # convert predators' densities in N/ha (currently in N/10 km2)
 # NB: 1km2 = 100ha -> 10km2 = 1e3ha
@@ -100,8 +93,6 @@ for (Sp in IntakeByPred$Taxon){
   IntakeByPred$Intake_W[IntakeByPred$Taxon == Sp] <- sum(IntakePrey$IntakePrey_W[IntakePrey$UpperTaxon == Sp], na.rm = TRUE)
   IntakeByPred$Intake_S[IntakeByPred$Taxon == Sp] <- sum(IntakePrey$IntakePrey_S[IntakePrey$UpperTaxon == Sp], na.rm = TRUE)
 }
-# boxplot(IntakeByPred$Intake_W, IntakeByPred$Intake_S, outline = FALSE)
-# points(rep(1, 21), IntakeByPred$Intake_W)
 
 # dissimilarity of predators
 DissimPartners <- c(); DissimPartners_Bin <- c()
@@ -144,8 +135,8 @@ RatMetricsNet$Level <- "Network"
 SharedPrey <- intersect(rownames(SummerMetricsSp$`lower level`), rownames(WinterMetricsSp$`lower level`))
 SharedPred <- intersect(rownames(SummerMetricsSp$`higher level`), rownames(WinterMetricsSp$`higher level`))
 
-setwd(WK_DIR)
-pdf("FWMetrics_20190910_R1.pdf", width = 8, height = 3)
+setwd(FIG_DIR)
+pdf("Fig_FoodWebMetrics.pdf", width = 8, height = 3)
 
 par(mfrow = c(1, 3))
 # PLOT 1 (A)
