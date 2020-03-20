@@ -78,22 +78,28 @@ PreyList <- unlist(lapply(strsplit(PreyList, "_"), paste, collapse = " "))
   
 ImpactOnPrey_S <- rowSums(MatSummerFW); ImpactOnPrey_W <- rowSums(MatWinterFW)
 
+library(dplyr)
+
+gsub(" ", "~~", PredList) %>% 
+  paste(as.character(1:NPred), '~-~italic(',.,')') %>%
+  parse(text = .) -> PredListItalics
+
 setwd(FIG_DIR)
-pdf("SeasonalFW_BiomassIntake_BPF.pdf", width = 10, height = 8)
+pdf("Figure_1.pdf", width = 7, height = 5.6)
 plotweb(MatSummerFW, bor.col.interaction = adjustcolor("grey", 0.5), text.low.col = "white", # ifelse(ImpactOnPrey_S < 1e4, "white", "black"),
         method = "normal", low.abun = PreyDens, high.abun = PredDens, empty = FALSE, col.interaction = adjustcolor("grey80", alpha.f = 0.5),
         col.high = SpGroup$SpCol[SpGroup$TrophicLevel == "Predator"], col.low = SpGroup$SpCol[SpGroup$TrophicLevel == "Prey"],
         bor.col.high = SpGroup$SpCol[SpQuantities$TrophicLevel == "Predator"], bor.col.low = SpGroup$SpCol[SpGroup$TrophicLevel == "Prey"],
-        y.lim = c(-3, 2), x.lim = c(-0.1, 2.25), arrow = "up.center", high.y = 1.75, low.y = 0.4)
-text(-0.1, 2, labels = "Summer")
+        y.lim = c(-3, 2), x.lim = c(-0.1, 2.25), arrow = "up.center", high.y = 1.7, low.y = 0.35)
+text(0, 2.1, labels = "Summer")
 plotweb(MatWinterFW, bor.col.interaction = adjustcolor("grey", 0.5), text.low.col = "white", # ifelse(ImpactOnPrey_W < 1e4, "white", "black"),
         method = "normal", low.abun = PreyDens, high.abun = PredDens, empty = FALSE, col.interaction = adjustcolor("grey80", alpha.f = 0.5),
         col.high = SpGroup$SpCol[SpQuantities$TrophicLevel == "Predator"], col.low = SpGroup$SpCol[SpQuantities$TrophicLevel == "Prey"],
         bor.col.high = SpGroup$SpCol[SpQuantities$TrophicLevel == "Predator"], bor.col.low = SpGroup$SpCol[SpQuantities$TrophicLevel == "Prey"],
         arrow = "up.center", add = TRUE, high.y = -0.4, low.y = -1.75) 
-text(-0.1, 0, labels = "Winter")
-legend("bottomleft", legend = Groups, col = GroupsCol, bty = "n", pch = 15, cex = 0.8)
-legend("bottom", legend = paste(seq(1:NPred), PredList, sep = " - "), bty = "n", ncol = 3, cex = 0.8)
+text(0, 0, labels = "Winter")
+legend("right", legend = Groups, col = GroupsCol, bty = "n", pch = 15, cex = 0.7)
+legend("bottom", legend = PredListItalics, bty = "n", ncol = 3, cex = 0.7)
 dev.off()
 
 PredTotIntake_W <- colSums(MatWinterFW); PredTotIntake_S <- colSums(MatSummerFW)
