@@ -32,7 +32,7 @@ Apodemus_flavicollis,Rodent,Prey,31,12.02424,0.00227,NA,0,NA,NA
 Apodemus_sylvaticus,Rodent,Prey,20,13.41654,6.70827,NA,0,NA,NA
 Arvicola_terrestris,Rodent,Prey,130,8.40257,0.64635,NA,0,NA,NA
 Astacus_sp.,Crustacean,Prey,32,3.50652,1.10754,NA,0,NA,NA
-Bison_bonasus,Ungulate,Prey,400000,0.17,0,8,0,NA,NA
+Bison_bonasus,Ungulate,Prey,400000,0.17,8e-05,NA,0,NA,NA
 Blicca_bjoerkna,Fish,Prey,145,1.95668,0.06742,NA,0,NA,NA
 Bonasa_bonasia,Galliforme,Prey,420,1.94774,0.02884,NA,0,NA,NA
 Bufo_sp.,Amphibian,Prey,77,3.67512,0.00537,NA,0,NA,NA
@@ -45,7 +45,7 @@ Carduelis_chloris,Passerine,Prey,28,3.83313,3.11131,NA,0,NA,NA
 Carduelis_spinus,Passerine,Prey,14,4.55838,3.57801,NA,0,NA,NA
 Castor_fiber,Rodent,Prey,19000,2.41663,0.00037,NA,0,NA,NA
 Certhia_familiaris,Passerine,Prey,9,5.09075,1.29734,NA,0,NA,NA
-Cervus_elaphus,Ungulate,Prey,100000,0.43,0,7,0,NA,NA
+Cervus_elaphus,Ungulate,Prey,100000,0.43,7e-05,NA,0,NA,NA
 Clethrionomys_glareolus,Rodent,Prey,17,13.97288,0.00424,NA,0,NA,NA
 Coccothraustes_coccothraustes,Passerine,Prey,55,3.23782,0.0951,NA,0,NA,NA
 Columba_livia,Columbiforme,Prey,354,2.03279,0.05742,NA,0,NA,NA
