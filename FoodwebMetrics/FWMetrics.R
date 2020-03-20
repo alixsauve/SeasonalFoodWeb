@@ -136,7 +136,7 @@ SharedPrey <- intersect(rownames(SummerMetricsSp$`lower level`), rownames(Winter
 SharedPred <- intersect(rownames(SummerMetricsSp$`higher level`), rownames(WinterMetricsSp$`higher level`))
 
 setwd(FIG_DIR)
-pdf("Fig_FoodWebMetrics.pdf", width = 8, height = 3)
+pdf("Figure_2.pdf", width = 7, height = 2.65)
 
 par(mfrow = c(1, 3))
 # PLOT 1 (A)
