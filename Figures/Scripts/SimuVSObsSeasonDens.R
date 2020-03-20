@@ -88,7 +88,7 @@ SpBiomass$SpPch[SpBiomass$Trophic_level == "Predator"] <- SpBiomass$SpPch[SpBiom
 IndexSpring10Y <- match(89:99, TimeVect); IndexSummer10Y <- match(89.25:99.25, TimeVect)
 PBSpCol <- rep("black", nrow(SpBiomass)); PBSpCol[SpBiomass$Trophic_level == "Predator"] <- "chocolate3"
 setwd(FIG_DIR)
-pdf("Figure_5.pdf", width = 7, height = 5.25)
+pdf("Figure_5.pdf", width = 7, height = 5.5)
 layout(matrix(c(1, 2, 3, 4, 5, 6), nrow = 3, byrow = TRUE), heights = c(2, 2, 0.8))
 par(mar = c(4, 6, 2.5, 1), cex.lab = 1.2); SubPlot <- 1
 for (FR in FRTypes){
@@ -118,7 +118,7 @@ for (FR in FRTypes){
     par(mar = c(0, 0, 0, 0), cex.axis = 0.6, tcl = -0.1, mgp = c(3, 0.1, 0))
     subplot(hist(log10(MeanSummerDens/SpBiomass$Summer_density), main = NULL, yaxt = "n", xlab = NA, ylab = NA, xlim = c(-7, 5), lwd = 0.5,
                  breaks = seq(-6.5, 5, by = 0.5), border = "white", col = "black"),
-            x = 1e3, y = 1e-1, size = c(1.5, 0.5))
+            x = 1e3-100, y = 1e-1, size = c(1.5, 0.5))
     print(range(log10(abs(MeanSummerDens-SpBiomass$Summer_density)), na.rm = TRUE))
     par(mar = c(4, 6, 2.5, 1), cex.axis = 1, tcl = -0.5, mgp = c(3, 1, 0)); SubPlot <- SubPlot + 1
   }
