@@ -47,7 +47,7 @@ NPred <- length(PredIndices)-sum(PopParam$IsCst[PredIndices])
 SpDensities <- SpDensities[match(PopParam$Taxon, SpDensities$Taxon), ]
 
 # types of models
-GiTypes <- c("DDModel", "DDData")
+GiTypes <- c("GiModel", "GiData")
 FRTypes <- c("TSmI", "TSmII")
 
 # time series treatment
@@ -81,7 +81,7 @@ SpBiomass$SpPch[SpBiomass$Trophic_level == "Predator"] <- SpBiomass$SpPch[SpBiom
 
 # compare summer vs spring densities
 setwd(FIG_DIR)
-pdf("CompareSeason.pdf", width = 8, height = 6)
+pdf("Figure_6.pdf", width = 7, height = 5.25)
 layout(matrix(c(1, 2, 3, 4, 5, 6), nrow = 3, byrow = TRUE), heights = c(2, 2, 0.8))
 # par(mfrow = c(2, 2), mar = c(4, 6, 2, 1), cex.lab = 1.2); SubPlot <- 1
 par(mar = c(4, 6, 2, 1), cex.lab = 1.2); SubPlot <- 1
@@ -108,7 +108,7 @@ for (TL in c("Pred", "Prey")){
       MeanSummerDens[tail(TS, 1) == 0] <- NA
       
       points(MeanSpringDens[SpIndices], MeanSummerDens[SpIndices],
-             col = ifelse(Gi == "DDModel", "grey", "black"), pch = SpBiomass$SpPch[SpIndices])
+             col = ifelse(Gi == "GiModel", "grey", "black"), pch = SpBiomass$SpPch[SpIndices])
     }
     abline(0, 1); abline(-1, 1, col = "grey"); abline(1, 1, col = "grey")
     legend("topleft", legend = toupper(letters[SubPlot]), bty = "n"); SubPlot <- SubPlot + 1
