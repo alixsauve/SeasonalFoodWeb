@@ -36,7 +36,7 @@ PredIndices <- which(PopParam$TrophicLevel == "Predator"); PredList <- PopParam$
 NPred <- length(PredIndices)-sum(PopParam$IsCst[PredIndices])
 
 # types of models
-GiTypes <- c("DDModel", "DDData")
+GiTypes <- c("GiModel", "GiData")
 FRTypes <- c("TSmI", "TSmII")
 
 # time series treatment
@@ -68,7 +68,7 @@ par(mfrow = c(1, 2)); SubPlot <- 1
 Index10Y <- which(TimeVect >= 90)
 for (FR in FRTypes){
   plot(NA, NA, log = "xy",
-       ylim = 10^c(1, 3), xlim = c(4e4, 10^5),
+       ylim = 10^c(1, 3), xlim = c(1e4, 10^5),
        xlab = "Prey density", ylab = "Predator density", main = paste("Type ", ifelse(FR == FRTypes[1], "I", "II"), sep = ""))
   legend("topleft", legend = toupper(letters[SubPlot]), bty = "n"); SubPlot <- SubPlot + 1
   for (Gi in GiTypes){
@@ -78,14 +78,11 @@ for (FR in FRTypes){
 }
 legend("topright", legend = c(expression((g[i])[Model]), expression((g[i])[Data])), col = c("black", "grey"), lty = 1)
 
-
-setwd(FIG_DIR)
-pdf("Fig_PhasePortraits.pdf", width = 8, height = 8)
 # with transients
 par(mfrow = c(2, 2)); SubPlot <- 1
 for (FR in FRTypes){
   for (Gi in GiTypes){
-    TS <- get(paste("TS", FR, Gi, sep = "_"))
+    TS <- get(paste(FR, Gi, sep = "_"))
     plot(TS_PredPrey[, 2], TS_PredPrey[, 1], type = "l", col = "grey",
          ylim = c(20, 500), xlim = c(1.5e4, 10^5), log = "xy",
          xlab = "Prey density", ylab = "Predator density")
@@ -97,10 +94,9 @@ for (FR in FRTypes){
 }
 legend("topright", legend = c(expression('T'<'90 years'), expression('T'>='90 years'), "Species extinction"),
        bty = "n", col = c("grey", "black", "black"), lty = c(1, 1, NA), pch = c(NA, NA, 3))
-dev.off()
 
 setwd(FIG_DIR)
-pdf("TSPP_10Y.pdf", width = 8, height = 6)
+pdf("Figure_4.pdf", width = 7, height = 5.25)
 # phase portraits and time series
 layout(matrix(c(1, 2, 2, 3, 4, 4,
                 1, 1, 1, 3, 3, 3,
@@ -136,7 +132,7 @@ for (FR in FRTypes){
       lines(TimeVect, TS[, Sp], col = adjustcolor(ColSp, alpha.f = 0.3))
     }
     if (FR == FRTypes[1]){
-      mtext(ifelse(Gi == "DDModel", expression(bold((hat(g)[i])[Model])), expression(bold((hat(g)[i])[Data]))),
+      mtext(ifelse(Gi == "GiModel", expression(bold((hat(g)[i])[Model])), expression(bold((hat(g)[i])[Data]))),
             side = 3, cex = 1.2, line = 0.5)
     }
   }
