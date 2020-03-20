@@ -1,6 +1,9 @@
 # This script draws final versus inital densities of predators and prey for each type of model.
 rm(list=ls(all=TRUE))
 
+# loading libraries
+library(TeachingDemos)
+
 EXTINCT_THRS <- 1e-6
 
 # define directories
@@ -42,7 +45,7 @@ NPred <- length(PredIndices)-sum(PopParam$IsCst[PredIndices])
 SpDensities <- SpDensities[match(PopParam$Taxon, SpDensities$Taxon), ]
 
 # types of models
-GiTypes <- c("DDModel", "DDData")
+GiTypes <- c("GiModel", "GiData")
 FRTypes <- c("TSmI", "TSmII")
 
 # time series treatment
@@ -85,7 +88,7 @@ SpBiomass$SpPch[SpBiomass$Trophic_level == "Predator"] <- SpBiomass$SpPch[SpBiom
 IndexSpring10Y <- match(89:99, TimeVect); IndexSummer10Y <- match(89.25:99.25, TimeVect)
 PBSpCol <- rep("black", nrow(SpBiomass)); PBSpCol[SpBiomass$Trophic_level == "Predator"] <- "chocolate3"
 setwd(FIG_DIR)
-pdf("Fig_SimVSObsSeasonDens.pdf", width = 8, height = 6)
+pdf("Figure_5.pdf", width = 7, height = 5.25)
 layout(matrix(c(1, 2, 3, 4, 5, 6), nrow = 3, byrow = TRUE), heights = c(2, 2, 0.8))
 par(mar = c(4, 6, 2.5, 1), cex.lab = 1.2); SubPlot <- 1
 for (FR in FRTypes){
@@ -106,14 +109,15 @@ for (FR in FRTypes){
     abline(0, 1); abline(1, 1, col = "grey"); abline(-1, 1, col = "grey")
     legend("topleft", legend = toupper(letters[SubPlot]), bty = "n", cex = 1.2)
     
-    if (Gi == "DDModel"){
+    if (Gi == "GiModel"){
       mtext(ifelse(FR == "TSmI", "Type I", "Type II"), side = 2, font = 2, line = 4.5)
     }
     if (FR == "TSmI"){
-      mtext(ifelse(Gi == "DDModel", expression(bold((hat(g)[i])[Model])), expression(bold((hat(g)[i])[Data]))), side = 3, line = 0.5)
+      mtext(ifelse(Gi == "GiModel", expression(bold((hat(g)[i])[Model])), expression(bold((hat(g)[i])[Data]))), side = 3, line = 0.5)
     }
     par(mar = c(0, 0, 0, 0), cex.axis = 0.6, tcl = -0.1, mgp = c(3, 0.1, 0))
-    subplot(hist(log10(MeanSummerDens/SpBiomass$Summer_density), main = NULL, yaxt = "n", xlab = NA, ylab = NA, xlim = c(-7, 5), lwd = 0.5, breaks = seq(-6.5, 5, by = 0.5), border = "white", col = "black"),
+    subplot(hist(log10(MeanSummerDens/SpBiomass$Summer_density), main = NULL, yaxt = "n", xlab = NA, ylab = NA, xlim = c(-7, 5), lwd = 0.5,
+                 breaks = seq(-6.5, 5, by = 0.5), border = "white", col = "black"),
             x = 1e3, y = 1e-1, size = c(1.5, 0.5))
     print(range(log10(abs(MeanSummerDens-SpBiomass$Summer_density)), na.rm = TRUE))
     par(mar = c(4, 6, 2.5, 1), cex.axis = 1, tcl = -0.5, mgp = c(3, 1, 0)); SubPlot <- SubPlot + 1
