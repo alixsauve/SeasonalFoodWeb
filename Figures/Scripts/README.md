@@ -1,4 +1,4 @@
-# Figures scripts
+# Scripts for figures
 
 The following scripts produces the figures displayed in our manuscript on the parameterisation of seasonal food webs. Note that the script to calculate and draw food web metrics can be found in `../../FoodWebMetrics`.
 
