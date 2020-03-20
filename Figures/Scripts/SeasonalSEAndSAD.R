@@ -43,7 +43,7 @@ NPred <- length(PredIndices)-sum(PopParam$IsCst[PredIndices])
 SpDensities <- SpDensities[match(PopParam$Taxon, SpDensities$Taxon), ]
 
 # types of models
-GiTypes <- c("DDModel", "DDData")
+GiTypes <- c("GiModel", "GiData")
 FRTypes <- c("TSmI", "TSmII")
 
 # time series treatment
@@ -94,7 +94,7 @@ IndexAutumn10Y <- match(89.5:99.5, TimeVect)
 PBSpCol <- rep("black", nrow(SpBiomass)); PBSpCol[SpBiomass$Trophic_level == "Predator"] <- "chocolate3"
 
 setwd(FIG_DIR)
-pdf("Fig_SEandSADSeasons.pdf", width = 8, height = 6)
+pdf("Figure_7.pdf", width = 7, height = 5.25)
 layout(matrix(c(1, 2, 3, 4, 5, 6), nrow = 3, byrow = TRUE), heights = c(2, 2, 0.8))
 par(mar = c(4, 6.5, 2, 1), cex.lab = 1.2); SubPlot <- 1
 for (FR in FRTypes){
