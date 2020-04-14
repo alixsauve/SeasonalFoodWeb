@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/242799546.svg)](https://zenodo.org/badge/latestdoi/242799546)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3720260.svg)](https://doi.org/10.5281/zenodo.3720260)
 
 This repository shares R and MATLAB scripts associate to:
 
